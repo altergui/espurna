@@ -1302,7 +1302,7 @@ String magnitudeTopicIndex(unsigned char index) {
     if (index < _magnitudes.size()) {
         sensor_magnitude_t magnitude = _magnitudes[index];
         if (SENSOR_USE_INDEX || (_counts[magnitude.type] > 1)) {
-            snprintf(topic, sizeof(topic), "%s/%u", magnitudeTopic(magnitude.type).c_str(), magnitude.global);
+            snprintf(topic, sizeof(topic), "%s-%u", magnitudeTopic(magnitude.type).c_str(), magnitude.global);
         } else {
             snprintf(topic, sizeof(topic), "%s", magnitudeTopic(magnitude.type).c_str());
         }
@@ -1464,6 +1464,22 @@ void sensorLoop() {
                     );
                 }
                 #endif // SENSOR_DEBUG
+
+				#if SENSOR_TRIGGER_RELAY
+				{
+					if ((MAGNITUDE_TEMPERATURE == magnitude.type) && (current > -16)) {
+		                #if SENSOR_DEBUG
+							DEBUG_MSG_P(PSTR("[SENSOR_TRIGGER_RELAY] temp over -16, relay true\n"));
+						#endif // SENSOR_DEBUG
+						relayStatus(0, true);
+					} else if ((MAGNITUDE_TEMPERATURE == magnitude.type) && (current < -18)) {
+						#if SENSOR_DEBUG
+							DEBUG_MSG_P(PSTR("[SENSOR_TRIGGER_RELAY] temp under -18, relay false\n"));
+						#endif // SENSOR_DEBUG
+						relayStatus(0, false);
+					}
+				}
+				#endif // SENSOR_TRIGGER_RELAY
 
                 // -------------------------------------------------------------
                 // Report

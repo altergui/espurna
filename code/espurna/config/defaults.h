@@ -562,7 +562,7 @@
 // https://github.com/xoseperez/espurna/issues/921
 // https://github.com/xoseperez/espurna/issues/1151
 #ifndef HOSTNAME
-#define HOSTNAME                ""
+#define HOSTNAME                "espurnaTest"
 #endif
 
 // Relay providers

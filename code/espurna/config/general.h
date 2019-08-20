@@ -13,7 +13,7 @@
 // https://en.wikipedia.org/wiki/Wi-Fi_Protected_Access#Target_users_(authentication_key_distribution)
 // https://github.com/xoseperez/espurna/issues/1151
 #ifndef ADMIN_PASS
-#define ADMIN_PASS              "fibonacci"     // Default password (WEB, OTA, WIFI SoftAP)
+#define ADMIN_PASS              "espurnaTest"     // Default password (WEB, OTA, WIFI SoftAP)
 #endif
 
 #ifndef USE_PASSWORD
@@ -107,7 +107,7 @@
 #endif
 
 #ifndef TELNET_STA
-#define TELNET_STA              0               // By default, disallow connections via STA interface
+#define TELNET_STA              1               // By default, disallow connections via STA interface
 #endif
 
 #ifndef TELNET_AUTHENTICATION
@@ -398,11 +398,11 @@
 
 // Optional hardcoded configuration (up to 2 networks)
 #ifndef WIFI1_SSID
-#define WIFI1_SSID                  ""
+#define WIFI1_SSID                  "PdS_test"
 #endif
 
 #ifndef WIFI1_PASS
-#define WIFI1_PASS                  ""
+#define WIFI1_PASS                  "ilimitado"
 #endif
 
 #ifndef WIFI1_IP
@@ -848,7 +848,7 @@
 #endif
 
 #ifndef MQTT_SETTER
-#define MQTT_SETTER                 "/set"
+#define MQTT_SETTER                 "-set"
 #endif
 
 // -----------------------------------------------------------------------------
@@ -1124,7 +1124,7 @@
 #endif
 
 #ifndef NTP_TIMEOUT
-#define NTP_TIMEOUT                 1000            // Set NTP request timeout to 2 seconds (issue #452)
+#define NTP_TIMEOUT                 5000            // Set NTP request timeout to 5 seconds (issue #452)
 #endif
 
 #ifndef NTP_TIME_OFFSET
@@ -1144,7 +1144,7 @@
 #endif
 
 #ifndef NTP_START_DELAY
-#define NTP_START_DELAY             1000            // Delay NTP start 1 second
+#define NTP_START_DELAY             2000            // Delay NTP start 2 second
 #endif
 
 #ifndef NTP_DST_REGION

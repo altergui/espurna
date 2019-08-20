@@ -65,7 +65,7 @@
 
     // Info
     #define MANUFACTURER        "NODEMCU"
-    #define DEVICE              "LOLIN"
+    #define DEVICE              "LOLIN_RELAYD1"
 
     // Buttons
     #define BUTTON1_PIN         0
@@ -73,12 +73,19 @@
     #define BUTTON1_RELAY       1
 
     // Hidden button will enter AP mode if dblclick and reset the device when long-long-clicked
-    #define RELAY1_PIN          12
-    #define RELAY1_TYPE         RELAY_TYPE_NORMAL
+    #define RELAY1_PIN          5
+    #define RELAY1_TYPE         RELAY_TYPE_INVERSE
 
     // Light
     #define LED1_PIN            2
     #define LED1_PIN_INVERSE    1
+    #define LED1_MODE		LED_MODE_WIFI
+
+    #define LED2_PIN            16
+    #define LED2_PIN_INVERSE    1
+    #define LED2_MODE		LED_MODE_RELAY
+    #define LED2_RELAY		1
+
 
 #elif defined(NODEMCU_BASIC)
     // Info

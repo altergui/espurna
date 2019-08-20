@@ -4,6 +4,8 @@
 
 #define SENSOR_DEBUG                        0               // Debug sensors
 
+#define	SENSOR_TRIGGER_RELAY				1				// Relay1 will be toggled depending on sensor1 reading
+
 #define SENSOR_READ_INTERVAL                6               // Read data from sensors every 6 seconds
 #define SENSOR_READ_MIN_INTERVAL            1               // Minimum read interval
 #define SENSOR_READ_MAX_INTERVAL            3600            // Maximum read interval
@@ -935,11 +937,11 @@
 #define I2C_USE_BRZO                    0       // Use brzo_i2c library or standard Wire
 
 #ifndef I2C_SDA_PIN
-#define I2C_SDA_PIN                     SDA     // SDA GPIO (Sonoff => 4)
+#define I2C_SDA_PIN                     D6     // SDA GPIO (Sonoff => 4)
 #endif
 
 #ifndef I2C_SCL_PIN
-#define I2C_SCL_PIN                     SCL     // SCL GPIO (Sonoff => 14)
+#define I2C_SCL_PIN                     D5     // SCL GPIO (Sonoff => 14)
 #endif
 
 #define I2C_CLOCK_STRETCH_TIME          200     // BRZO clock stretch time

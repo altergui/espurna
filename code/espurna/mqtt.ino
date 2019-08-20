@@ -68,13 +68,13 @@ Ticker _mqtt_flush_ticker;
 void _mqttConnect() {
 
     // Do not connect if disabled
-    if (!_mqtt_enabled) return;
+    if (!_mqtt_enabled) {   return; }
 
     // Do not connect if already connected or still trying to connect
-    if (_mqtt.connected() || _mqtt_connecting) return;
+    if (_mqtt.connected() || _mqtt_connecting) { return; }
 
     // Check reconnect interval
-    if (millis() - _mqtt_last_connection < _mqtt_reconnect_delay) return;
+    if (millis() - _mqtt_last_connection < _mqtt_reconnect_delay) { return; }
 
     // Increase the reconnect delay
     _mqtt_reconnect_delay += MQTT_RECONNECT_DELAY_STEP;
@@ -352,6 +352,7 @@ void _mqttInitCommands() {
     terminalRegisterCommand(F("MQTT.RESET"), [](Embedis* e) {
         _mqttConfigure();
         mqttDisconnect();
+        _mqttOnDisconnect();
         terminalOK();
     });
 
@@ -501,7 +502,7 @@ String mqttTopic(const char * magnitude, bool is_set) {
 */
 String mqttTopic(const char * magnitude, unsigned int index, bool is_set) {
     char buffer[strlen(magnitude)+5];
-    snprintf_P(buffer, sizeof(buffer), PSTR("%s/%d"), magnitude, index);
+    snprintf_P(buffer, sizeof(buffer), PSTR("%s-%d"), magnitude, index);
     return mqttTopic(buffer, is_set);
 }
 
@@ -559,7 +560,7 @@ void mqttSend(const char * topic, const char * message) {
 
 void mqttSend(const char * topic, unsigned int index, const char * message, bool force, bool retain) {
     char buffer[strlen(topic)+5];
-    snprintf_P(buffer, sizeof(buffer), PSTR("%s/%d"), topic, index);
+    snprintf_P(buffer, sizeof(buffer), PSTR("%s-%d"), topic, index);
     mqttSend(buffer, message, force, retain);
 }
 
