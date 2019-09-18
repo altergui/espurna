@@ -4,6 +4,8 @@
 
 #define SENSOR_DEBUG                        0               // Debug sensors
 
+#define	SENSOR_TRIGGER_RELAY				1				// Relay1 will be toggled depending on sensor1 reading
+
 #define SENSOR_READ_INTERVAL                6               // Read data from sensors every 6 seconds
 #define SENSOR_READ_MIN_INTERVAL            1               // Minimum read interval
 #define SENSOR_READ_MAX_INTERVAL            3600            // Maximum read interval
