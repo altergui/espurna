@@ -250,6 +250,31 @@
     #define SENSOR_SUPPORT              0
     #define THINGSPEAK_SUPPORT          0
 
+#elif defined(TUYA_SONOFF_BASIC_CLONE)
+
+    // Info
+    #define MANUFACTURER        "TUYA"
+    #define DEVICE              "SONOFF_BASIC_CLONE_I2C_1_3"
+
+    // LEDs
+    #define LED1_PIN            4
+    #define LED1_PIN_INVERSE    1
+
+    // Buttons
+    #define BUTTON2_PIN         13
+    #define BUTTON2_MODE        BUTTON_PUSHBUTTON | BUTTON_SET_PULLUP | BUTTON_DEFAULT_HIGH
+    #define BUTTON2_RELAY       1
+
+    // Relays
+    #define RELAY1_PIN          12
+    #define RELAY1_TYPE         RELAY_TYPE_NORMAL
+
+    // repurpose GPIO 3 and 1 for I2C instead of serial RX/TX
+    #define DEBUG_SERIAL_SUPPORT    0
+    #define I2C_SCL_PIN         3
+    #define I2C_SDA_PIN         1
+
+
 // -----------------------------------------------------------------------------
 // Itead Studio boards
 // -----------------------------------------------------------------------------
