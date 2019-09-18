@@ -112,6 +112,19 @@
 //#define MAGICHOME_ZJ_WFMN_A_11
 //#define MAGICHOME_ZJ_WFMN_B_11
 //#define GBLIFE_RGBW_SOCKET
+//#define MAGICHOME_ZJ_ESPM_5CH_B_13
+//#define MANCAVEMADE_ESPLIVE
+//#define MAXCIO_WDE004
+//#define MAXCIO_WUS002S
+//#define NEO_COOLCAM_NAS_WR01W
+//#define NEXETE_A19
+//#define NODEMCU_BASIC
+//#define NODEMCU_LOLIN
+//#define OPENENERGYMONITOR_MQTT_RELAY
+//#define ORVIBO_B25
+//#define OUKITEL_P1
+//#define PHYX_ESP12_RGB
+//#define PILOTAK_ESP_DIN_V1
 //#define SMARTLIFE_MINI_SMART_SOCKET
 //#define GOSUND_SP1_V23
 //#define GOSUND_WS1
@@ -122,7 +135,7 @@
 // Features (values below are non-default values)
 //--------------------------------------------------------------------------------
 
-//#define ALEXA_SUPPORT          0
+#define ALEXA_SUPPORT          0
 //#define API_SUPPORT            0
 //#define BROKER_SUPPORT         0
 //#define BUTTON_SUPPORT         0
@@ -130,11 +143,11 @@
 //#define DEBUG_TELNET_SUPPORT   0
 //#define DEBUG_UDP_SUPPORT      1
 //#define DEBUG_WEB_SUPPORT      0
-//#define DOMOTICZ_SUPPORT       0
+#define DOMOTICZ_SUPPORT       1
 //#define ENCODER_SUPPORT        1
-//#define HOMEASSISTANT_SUPPORT  0
+#define HOMEASSISTANT_SUPPORT  0
 //#define I2C_SUPPORT            1
-//#define INFLUXDB_SUPPORT       1
+#define INFLUXDB_SUPPORT       1
 //#define IR_SUPPORT             1
 //#define LED_SUPPORT            0
 //#define LLMNR_SUPPORT          1  // Only with Arduino Core 2.4.0
@@ -164,7 +177,7 @@
 //#define ANALOG_SUPPORT         1
 //#define BH1750_SUPPORT         1
 //#define BMP180_SUPPORT         1
-//#define BMX280_SUPPORT         1
+#define BMX280_SUPPORT         1
 //#define CSE7766_SUPPORT        1
 //#define DALLAS_SUPPORT         1
 //#define DHT_SUPPORT            1
