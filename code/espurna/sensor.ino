@@ -1467,14 +1467,22 @@ void sensorLoop() {
 
 				#if SENSOR_TRIGGER_RELAY
 				{
-					if ((MAGNITUDE_TEMPERATURE == magnitude.type) && (current > -16)) {
+					if ((MAGNITUDE_TEMPERATURE == magnitude.type) && (current > -15)) {
 		                #if SENSOR_DEBUG
-							DEBUG_MSG_P(PSTR("[SENSOR_TRIGGER_RELAY] temp over -16, relay true\n"));
+							DEBUG_MSG_P(PSTR("[SENSOR_TRIGGER_RELAY] temp over -15, relay true\n"));
 						#endif // SENSOR_DEBUG
 						relayStatus(0, true);
-					} else if ((MAGNITUDE_TEMPERATURE == magnitude.type) && (current < -18)) {
+						if (getUptime() > 3600) {
+							DEBUG_MSG_P(PSTR("[SENSOR_TRIGGER_RELAY] uptime past 3600s, rebooting...\n"));
+							deferredReset(100, CUSTOM_RESET_NOFUSS);
+						}
+						if (current > 20) {
+							DEBUG_MSG_P(PSTR("[SENSOR_TRIGGER_RELAY] temp over +20, rebooting...\n"));
+							deferredReset(100, CUSTOM_RESET_NOFUSS);
+						}
+					} else if ((MAGNITUDE_TEMPERATURE == magnitude.type) && (current < -19)) {
 						#if SENSOR_DEBUG
-							DEBUG_MSG_P(PSTR("[SENSOR_TRIGGER_RELAY] temp under -18, relay false\n"));
+							DEBUG_MSG_P(PSTR("[SENSOR_TRIGGER_RELAY] temp under -19, relay false\n"));
 						#endif // SENSOR_DEBUG
 						relayStatus(0, false);
 					}

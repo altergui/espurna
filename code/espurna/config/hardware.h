@@ -65,7 +65,7 @@
 
     // Info
     #define MANUFACTURER        "NODEMCU"
-    #define DEVICE              "LOLIN_RELAYD1"
+    #define DEVICE              "LOLIN_RELAYFLOAT_GPIO3_15_19_REBOOT"
 
     // Buttons
     #define BUTTON1_PIN         0
@@ -73,8 +73,8 @@
     #define BUTTON1_RELAY       1
 
     // Hidden button will enter AP mode if dblclick and reset the device when long-long-clicked
-    #define RELAY1_PIN          5
-    #define RELAY1_TYPE         RELAY_TYPE_INVERSE
+    #define RELAY1_PIN          3
+    #define RELAY1_TYPE         RELAY_TYPE_FLOAT
 
     // Light
     #define LED1_PIN            2
@@ -257,12 +257,41 @@
     #define SENSOR_SUPPORT              0
     #define THINGSPEAK_SUPPORT          0
 
+#elif defined(TUYA_SONOFF_BASIC_CLONE)
+
+    // Info
+    #define MANUFACTURER        "TUYA"
+    #define DEVICE              "SONOFF_BASIC_CLONE"
+
+    // LEDs
+    #define LED1_PIN            4
+    #define LED1_PIN_INVERSE    0
+
+    #define I2C_SDA_PIN         5
+    #define I2C_SCL_PIN         14
+    #define INFLUXDB_SUPPORT       0
+
 // -----------------------------------------------------------------------------
 // Itead Studio boards
 // -----------------------------------------------------------------------------
 
 #elif defined(ITEAD_SONOFF_BASIC)
 
+//////////////////////
+    // Buttons
+    #define BUTTON1_PIN         13
+    #define BUTTON1_MODE        BUTTON_PUSHBUTTON | BUTTON_DEFAULT_HIGH
+    #define BUTTON1_RELAY       1
+    #define BUTTON2_PIN         14
+    #define BUTTON2_MODE        BUTTON_SWITCH | BUTTON_SET_PULLUP | BUTTON_DEFAULT_HIGH
+    #define BUTTON2_RELAY       1
+
+    // Relays
+    #define RELAY1_PIN          12
+    #define RELAY1_TYPE         RELAY_TYPE_NORMAL
+
+
+//////////////////////
     // Info
     #define MANUFACTURER        "ITEAD"
     #define DEVICE              "SONOFF_BASIC"

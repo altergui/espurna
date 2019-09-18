@@ -135,6 +135,26 @@ void _relayProviderStatus(unsigned char id, bool status) {
             digitalWrite(_relays[id].pin, status);
         } else if (_relays[id].type == RELAY_TYPE_INVERSE) {
             digitalWrite(_relays[id].pin, !status);
+        } else if (_relays[id].type == RELAY_TYPE_FLOAT) {
+			if (status) {
+				// ON = float
+				digitalWrite(_relays[id].pin, status);
+				pinMode(_relays[id].pin, INPUT);
+			} else {
+				// OFF = pull down to GND
+				digitalWrite(_relays[id].pin, status);
+				pinMode(_relays[id].pin, OUTPUT);
+			}
+        } else if (_relays[id].type == RELAY_TYPE_FLOAT_INVERSE) {
+			if (!status) {
+				// OFF = float
+				digitalWrite(_relays[id].pin, !status);
+				pinMode(_relays[id].pin, INPUT);
+			} else {
+				// ON = pull down to GND
+				digitalWrite(_relays[id].pin, !status);
+				pinMode(_relays[id].pin, OUTPUT);
+			}
         } else if (_relays[id].type == RELAY_TYPE_LATCHED || _relays[id].type == RELAY_TYPE_LATCHED_INVERSE) {
             bool pulse = RELAY_TYPE_LATCHED ? HIGH : LOW;
             digitalWrite(_relays[id].pin, !pulse);
@@ -1003,6 +1023,27 @@ void relayMQTTCallback(unsigned int type, const char * topic, const char * paylo
 
 void relaySetupMQTT() {
     mqttRegister(relayMQTTCallback);
+
+#if TERMINAL_SUPPORT
+
+
+    terminalRegisterCommand(F("RELAY.TOGGLE"), [](Embedis* e) {
+		relayToggle(0, true, true);
+        terminalOK();
+    });
+    terminalRegisterCommand(F("RELAY.FLOAT"), [](Embedis* e) {
+		pinMode(0, INPUT);
+        terminalOK();
+    });
+    terminalRegisterCommand(F("RELAY.OUT"), [](Embedis* e) {
+		digitalWrite(0, LOW);
+		pinMode(0, OUTPUT);
+        terminalOK();
+    });
+
+
+#endif // TERMINAL_SUPPORT
+
 }
 
 #endif
