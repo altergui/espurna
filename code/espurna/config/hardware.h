@@ -269,6 +269,9 @@
     #define RELAY1_PIN          12
     #define RELAY1_TYPE         RELAY_TYPE_NORMAL
 
+    // Relay1 will be toggled depending on Sensor1 reading
+    #define SENSOR_TRIGGER_RELAY 1
+
     // repurpose GPIO 3 and 1 for I2C instead of serial RX/TX
     #define DEBUG_SERIAL_SUPPORT    0
     #define I2C_SCL_PIN         3
