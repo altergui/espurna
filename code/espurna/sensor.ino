@@ -1489,6 +1489,24 @@ void sensorLoop() {
 				}
 				#endif // SENSOR_TRIGGER_RELAY
 
+				#if SENSOR_TRIGGER_MQTT
+				{
+				    if (strcmp(magnitude.sensor->address(magnitude.local).c_str(), SENSOR_TRIGGER_MQTT_SENSOR_ADDR) == 0) {
+						if ((MAGNITUDE_TEMPERATURE == magnitude.type) && (current > 33.9)) {
+							#if SENSOR_DEBUG
+								DEBUG_MSG_P(PSTR("[SENSOR_TRIGGER_MQTT] temp over 33.9, mqtt set relay false\n"));
+							#endif // SENSOR_DEBUG
+							mqttSendRaw(SENSOR_TRIGGER_MQTT_TOPIC, RELAY_MQTT_OFF);
+						} else if ((MAGNITUDE_TEMPERATURE == magnitude.type) && (current < 33.3)) {
+							#if SENSOR_DEBUG
+								DEBUG_MSG_P(PSTR("[SENSOR_TRIGGER_MQTT] temp under 33.3, mqtt set relay true\n"));
+							#endif // SENSOR_DEBUG
+							mqttSendRaw(SENSOR_TRIGGER_MQTT_TOPIC, RELAY_MQTT_ON);
+						}
+					}
+				}
+				#endif // SENSOR_TRIGGER_MQTT
+
                 // -------------------------------------------------------------
                 // Report
                 // (we do it every _sensor_report_every readings)

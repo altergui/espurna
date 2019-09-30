@@ -8,6 +8,10 @@
 #define	SENSOR_TRIGGER_RELAY				1				// Relay1 will be toggled depending on sensor1 reading
 #endif
 
+#ifndef SENSOR_TRIGGER_MQTT
+#define	SENSOR_TRIGGER_MQTT                 0				// A hardcoded MQTT will be published depending on sensor1 reading
+#endif
+
 #define SENSOR_READ_INTERVAL                6               // Read data from sensors every 6 seconds
 #define SENSOR_READ_MIN_INTERVAL            1               // Minimum read interval
 #define SENSOR_READ_MAX_INTERVAL            3600            // Maximum read interval

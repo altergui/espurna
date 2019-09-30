@@ -65,7 +65,7 @@
 
     // Info
     #define MANUFACTURER        "NODEMCU"
-    #define DEVICE              "LOLIN_I2C_D5_D6_NOTRIGGERRELAY"
+    #define DEVICE              "LOLIN_TRIGGERMQTT"
 
     // Buttons
     #define BUTTON1_PIN         0
@@ -73,7 +73,7 @@
     #define BUTTON1_RELAY       1
 
     // Hidden button will enter AP mode if dblclick and reset the device when long-long-clicked
-    #define RELAY1_PIN          12
+    #define RELAY1_PIN          13
     #define RELAY1_TYPE         RELAY_TYPE_NORMAL
 
     // Light
@@ -88,6 +88,11 @@
 
     #define        SENSOR_TRIGGER_RELAY    0 // don't trigger relay
 
+    #define			SENSOR_TRIGGER_MQTT		1 	// publish MQTT based on temperature
+	#define			SENSOR_TRIGGER_MQTT_TOPIC	"sonoff-iogurte/relay/0/set"
+	#define			SENSOR_TRIGGER_MQTT_SENSOR_ADDR	"28AA8371481401B2"   // second thermometer
+	#define	SENSOR_DEBUG 0
+	
     // repurpose GPIO 1 for DS18B20 instead of serial TX
     #define DEBUG_SERIAL_SUPPORT    0
 	#define DALLAS_SUPPORT		1
