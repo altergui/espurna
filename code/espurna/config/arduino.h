@@ -7,14 +7,14 @@
 // Hardware
 //--------------------------------------------------------------------------------
 
-//#define NODEMCU_LOLIN
+#define NODEMCU_LOLIN
 //#define WEMOS_D1_MINI
 //#define WEMOS_D1_MINI_RELAYSHIELD
 //#define TINKERMAN_ESPURNA_H06
 //#define TINKERMAN_ESPURNA_H08
 //#define TINKERMAN_RFM69GW
 //#define ITEAD_SONOFF_BASIC
-#define TUYA_SONOFF_BASIC_CLONE
+//#define TUYA_SONOFF_BASIC_CLONE
 //#define ITEAD_SONOFF_RF
 //#define ITEAD_SONOFF_TH
 //#define ITEAD_SONOFF_SV
@@ -135,6 +135,9 @@
 // Features (values below are non-default values)
 //--------------------------------------------------------------------------------
 
+#define WEB_FORCE_PASS_CHANGE  0
+#define TELNET_STA             1
+
 #define ALEXA_SUPPORT          0
 //#define API_SUPPORT            0
 //#define BROKER_SUPPORT         0
@@ -177,7 +180,7 @@
 //#define ANALOG_SUPPORT         1
 //#define BH1750_SUPPORT         1
 //#define BMP180_SUPPORT         1
-#define BMX280_SUPPORT         1
+//#define BMX280_SUPPORT         1
 //#define CSE7766_SUPPORT        1
 //#define DALLAS_SUPPORT         1
 //#define DHT_SUPPORT            1

@@ -65,7 +65,7 @@
 
     // Info
     #define MANUFACTURER        "NODEMCU"
-    #define DEVICE              "LOLIN"
+    #define DEVICE              "LOLIN_I2C_D5_D6_NOTRIGGERRELAY"
 
     // Buttons
     #define BUTTON1_PIN         0
@@ -79,6 +79,24 @@
     // Light
     #define LED1_PIN            2
     #define LED1_PIN_INVERSE    1
+    #define LED1_MODE          LED_MODE_WIFI
+
+    #define LED2_PIN            16
+    #define LED2_PIN_INVERSE    1
+    #define LED2_MODE          LED_MODE_RELAY
+    #define LED2_RELAY         1
+
+    #define        SENSOR_TRIGGER_RELAY    0 // don't trigger relay
+
+    // repurpose GPIO 1 for DS18B20 instead of serial TX
+    #define DEBUG_SERIAL_SUPPORT    0
+	#define DALLAS_SUPPORT		1
+    #define DALLAS_PIN			1
+
+	// BME280 on pins 3.3v,GND,D6,D5
+	#define BMX280_SUPPORT         1
+	#define I2C_SDA_PIN                     D6
+	#define I2C_SCL_PIN                     D5
 
 #elif defined(NODEMCU_BASIC)
     // Info
@@ -254,7 +272,7 @@
 
     // Info
     #define MANUFACTURER        "TUYA"
-    #define DEVICE              "SONOFF_BASIC_CLONE_I2C_1_3"
+    #define DEVICE              "SONOFF_BASIC_CLONE_TRIGRELAY_15_19"
 
     // LEDs
     #define LED1_PIN            4
@@ -471,7 +489,7 @@
 
     // Info
     #define MANUFACTURER        "ITEAD"
-    #define DEVICE              "SONOFF_POW_R2"
+    #define DEVICE              "SONOFF_POW_R2_GUI"
 
     // Buttons
     #define BUTTON1_PIN         0
@@ -494,6 +512,9 @@
     #define CSE7766_SUPPORT     1
     #endif
     #define CSE7766_PIN         1
+    
+	#define DALLAS_SUPPORT		1
+	#define DALLAS_PIN			4
 
 #elif defined(ITEAD_SONOFF_DUAL)
 
