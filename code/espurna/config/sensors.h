@@ -56,7 +56,7 @@
                                                             // Warning: this might wear out flash fast!
 #endif
 
-#define SENSOR_PUBLISH_ADDRESSES            0               // Publish sensor addresses
+#define SENSOR_PUBLISH_ADDRESSES            1               // Publish sensor addresses
 #define SENSOR_ADDRESS_TOPIC                "address"       // Topic to publish sensor addresses
 
 
@@ -65,7 +65,7 @@
 #endif
 
 #ifndef SENSOR_ENERGY_UNITS
-#define SENSOR_ENERGY_UNITS                 ENERGY_JOULES   // Energy units (ENERGY_JOULES | ENERGY_KWH)
+#define SENSOR_ENERGY_UNITS                 ENERGY_KWH   // Energy units (ENERGY_JOULES | ENERGY_KWH)
 #endif
 
 #ifndef SENSOR_POWER_UNITS

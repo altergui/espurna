@@ -65,7 +65,7 @@
 
     // Info
     #define MANUFACTURER        "NODEMCU"
-    #define DEVICE              "LOLIN_TRIGGERMQTT"
+    #define DEVICE              "LOLIN_TRIGGERMQTT_PUBADDR"
 
     // Buttons
     #define BUTTON1_PIN         0
@@ -99,7 +99,7 @@
     #define DALLAS_PIN			1
 
 	// BME280 on pins 3.3v,GND,D6,D5
-	#define BMX280_SUPPORT         1
+	#define BMX280_SUPPORT         0
 	#define I2C_SDA_PIN                     D6
 	#define I2C_SCL_PIN                     D5
 
