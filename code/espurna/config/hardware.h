@@ -65,7 +65,7 @@
 
     // Info
     #define MANUFACTURER        "NODEMCU"
-    #define DEVICE              "LOLIN_TRIGGERMQTT_PUBADDR"
+    #define DEVICE              "LOLIN_TRIGGERMQTT_PUBADDR_X"
 
     // Buttons
     #define BUTTON1_PIN         0
@@ -88,15 +88,26 @@
 
     #define        SENSOR_TRIGGER_RELAY    0 // don't trigger relay
 
-    #define			SENSOR_TRIGGER_MQTT		1 	// publish MQTT based on temperature
-	#define			SENSOR_TRIGGER_MQTT_TOPIC	"sonoff-iogurte/relay/0/set"
+    #define			SENSOR_TRIGGER_MQTT		0 	// publish MQTT based on temperature
 	#define			SENSOR_TRIGGER_MQTT_SENSOR_ADDR	"28AA8371481401B2"   // second thermometer
-	#define	SENSOR_DEBUG 0
-	
+	#define	SENSOR_TRIGGER_MQTT_MAX_TEMP   33.6
+	#define	SENSOR_TRIGGER_MQTT_MAX_TOPIC  "sonoff-iogurte/relay/0/set"
+	#define	SENSOR_TRIGGER_MQTT_MAX_MSG	   RELAY_MQTT_OFF
+	#define	SENSOR_TRIGGER_MQTT_MIN_TEMP   33.5
+	#define	SENSOR_TRIGGER_MQTT_MIN_TOPIC  "sonoff-iogurte/relay/0/set"
+	#define	SENSOR_TRIGGER_MQTT_MIN_MSG    RELAY_MQTT_ON
+
+	#define	SENSOR_DEBUG 1
+
     // repurpose GPIO 1 for DS18B20 instead of serial TX
-    #define DEBUG_SERIAL_SUPPORT    0
+    #define DEBUG_SERIAL_SUPPORT    1
 	#define DALLAS_SUPPORT		1
-    #define DALLAS_PIN			1
+    #define DALLAS_PIN			5
+
+    // output 3.3v in D2 (gpio4)
+    #define LED3_PIN			4
+    #define LED3_PIN_INVERSE    0
+	#define LED3_MODE			LED_MODE_ON
 
 	// BME280 on pins 3.3v,GND,D6,D5
 	#define BMX280_SUPPORT         0
@@ -146,7 +157,7 @@
     #define RELAY1_PIN          5
     #define RELAY1_TYPE         RELAY_TYPE_NORMAL
 
-    // Light RGBW 
+    // Light RGBW
     #define LED1_PIN            2
     #define LED1_PIN_INVERSE    1
 
@@ -154,6 +165,28 @@
     // so I2C must be remapped to other pins
     #define I2C_SDA_PIN         12  // D6
     #define I2C_SCL_PIN         14  // D5
+
+#elif defined(WEMOS_D1_BME280)
+
+    // Info
+    #define MANUFACTURER        "WEMOS"
+    #define DEVICE              "D1_BME280"
+
+    // Buttons
+    // No buttons on the D1 MINI alone, but defining it without adding a button doen't create problems
+    #define BUTTON1_PIN         0   // Connect a pushbutton between D3 and GND,
+                                    // it's the same as using a Wemos one button shield
+    #define BUTTON1_MODE        BUTTON_PUSHBUTTON | BUTTON_DEFAULT_HIGH
+    #define BUTTON1_RELAY       1
+
+    // LEDs
+    #define LED1_PIN            2
+    #define LED1_PIN_INVERSE    1
+
+    #define I2C_SDA_PIN         4  // D2
+    #define I2C_SCL_PIN         5  // D1
+
+	#define BMX280_SUPPORT      1
 
 #elif defined(WEMOS_D1_TARPUNA_SHIELD)
 
@@ -277,29 +310,81 @@
 
     // Info
     #define MANUFACTURER        "TUYA"
-    #define DEVICE              "SONOFF_BASIC_CLONE_TRIGRELAY_15_19"
+    #define DEVICE              "SONOFF_BASIC_CLONE"
 
     // LEDs
     #define LED1_PIN            4
     #define LED1_PIN_INVERSE    1
+    #define LED1_MODE		    LED_MODE_RELAY_WIFI
 
     // Buttons
-    #define BUTTON2_PIN         13
-    #define BUTTON2_MODE        BUTTON_PUSHBUTTON | BUTTON_SET_PULLUP | BUTTON_DEFAULT_HIGH
-    #define BUTTON2_RELAY       1
+    #define BUTTON1_PIN         13
+    #define BUTTON1_MODE        BUTTON_PUSHBUTTON | BUTTON_SET_PULLUP | BUTTON_DEFAULT_HIGH
+    #define BUTTON1_RELAY       1
 
     // Relays
     #define RELAY1_PIN          12
     #define RELAY1_TYPE         RELAY_TYPE_NORMAL
 
+#elif defined(TUYA_SONOFF_BASIC_CLONE_DS18B20)
+
+    // Info
+    #define MANUFACTURER        "TUYA"
+    #define DEVICE              "SONOFF_BASIC_CLONE_DS18B20"
+
+    // LEDs
+    #define LED1_PIN            4
+    #define LED1_PIN_INVERSE    1
+    #define LED1_MODE		    LED_MODE_RELAY_WIFI
+
+    // Buttons
+    #define BUTTON1_PIN         13
+    #define BUTTON1_MODE        BUTTON_PUSHBUTTON | BUTTON_SET_PULLUP | BUTTON_DEFAULT_HIGH
+    #define BUTTON1_RELAY       1
+
+    // Relays
+    #define RELAY1_PIN          12
+    #define RELAY1_TYPE         RELAY_TYPE_NORMAL
+
+    // repurpose GPIO 5 for DS18B20
+	#define DALLAS_SUPPORT		1
+    #define DALLAS_PIN			5
+
+    // Relay1 will be toggled depending on Sensor1 reading
+    #define SENSOR_TRIGGER_RELAY 0
+    #define SENSOR_TRIGGER_RELAY_MIN_TEMP 15
+    #define SENSOR_TRIGGER_RELAY_MAX_TEMP 25
+
+#elif defined(TUYA_INCUBATOR)
+
+    // Info
+    #define MANUFACTURER        "TUYA_INCUBATOR"
+    #define DEVICE              "DS18B20_TRIGRELAY_30ON_37OFF"
+
+    // LEDs
+    #define LED1_PIN            4
+    #define LED1_PIN_INVERSE    1
+    #define LED1_MODE		    LED_MODE_RELAY_WIFI
+
+    // Buttons
+    #define BUTTON1_PIN         13
+    #define BUTTON1_MODE        BUTTON_PUSHBUTTON | BUTTON_SET_PULLUP | BUTTON_DEFAULT_HIGH
+    #define BUTTON1_RELAY       1
+
+    // Relays
+    #define RELAY1_PIN          12
+    #define RELAY1_TYPE         RELAY_TYPE_NORMAL
+
+    // repurpose GPIO 5 for DS18B20
+	#define DALLAS_SUPPORT		1
+    #define DALLAS_PIN			5
+
     // Relay1 will be toggled depending on Sensor1 reading
     #define SENSOR_TRIGGER_RELAY 1
-
-    // repurpose GPIO 3 and 1 for I2C instead of serial RX/TX
-    #define DEBUG_SERIAL_SUPPORT    0
-    #define I2C_SCL_PIN         3
-    #define I2C_SDA_PIN         1
-
+    #define SENSOR_TRIGGER_RELAY_MIN_TEMP 30
+    #define SENSOR_TRIGGER_RELAY_MIN_RELAY true
+    #define SENSOR_TRIGGER_RELAY_MAX_TEMP 37
+    #define SENSOR_TRIGGER_RELAY_MAX_RELAY false
 
 // -----------------------------------------------------------------------------
 // Itead Studio boards
@@ -517,7 +602,7 @@
     #define CSE7766_SUPPORT     1
     #endif
     #define CSE7766_PIN         1
-    
+
 	#define DALLAS_SUPPORT		1
 	#define DALLAS_PIN			4
 
@@ -3355,9 +3440,9 @@
 
     // Relays
     #define RELAY1_PIN          15
-    #define RELAY1_TYPE         RELAY_TYPE_NORMAL 
- 
-    // Light RGBW 
+    #define RELAY1_TYPE         RELAY_TYPE_NORMAL
+
+    // Light RGBW
     #define RELAY_PROVIDER      RELAY_PROVIDER_LIGHT
     #define LIGHT_PROVIDER      LIGHT_PROVIDER_DIMMER
     #define DUMMY_RELAY_COUNT   1
@@ -3370,8 +3455,8 @@
     #define LIGHT_CH1_INVERSE   0
     #define LIGHT_CH2_INVERSE   0
     #define LIGHT_CH3_INVERSE   0
-    #define LIGHT_CH4_INVERSE   0	
-    
+    #define LIGHT_CH4_INVERSE   0
+
 // ----------------------------------------------------------------------------------------
 //  Smart life Mini Smart Socket is similar Homecube 16A but some GPIOs differ
 //  https://www.ebay.de/itm/Smart-Steckdose-WIFI-WLAN-Amazon-Alexa-Fernbedienung-Home-Socket-Zeitschaltuh-DE/123352026749?hash=item1cb85a8e7d:g:IasAAOSwk6dbj390
