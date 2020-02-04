@@ -41,6 +41,8 @@ unsigned char _sensor_energy_units = SENSOR_ENERGY_UNITS;
 unsigned char _sensor_temperature_units = SENSOR_TEMPERATURE_UNITS;
 double _sensor_temperature_correction = SENSOR_TEMPERATURE_CORRECTION;
 double _sensor_humidity_correction = SENSOR_HUMIDITY_CORRECTION;
+double _sensor_trigger_relay_min_temp = SENSOR_TRIGGER_RELAY_MIN_TEMP;
+double _sensor_trigger_relay_max_temp = SENSOR_TRIGGER_RELAY_MAX_TEMP;
 
 #if PZEM004T_SUPPORT
 PZEM004TSensor *pzem004t_sensor;
@@ -989,6 +991,8 @@ void _sensorConfigure() {
     _sensor_temperature_correction = getSetting("tmpCorrection", SENSOR_TEMPERATURE_CORRECTION).toFloat();
     _sensor_humidity_correction = getSetting("humCorrection", SENSOR_HUMIDITY_CORRECTION).toFloat();
     _sensor_energy_reset_ts = getSetting("snsResetTS", "");
+    _sensor_trigger_relay_min_temp = getSetting("snsTrigMinTemp", SENSOR_TRIGGER_RELAY_MIN_TEMP).toFloat();
+    _sensor_trigger_relay_max_temp = getSetting("snsTrigMaxTemp", SENSOR_TRIGGER_RELAY_MAX_TEMP).toFloat();
 
     // Specific sensor settings
     for (unsigned char i=0; i<_sensors.size(); i++) {
@@ -1467,25 +1471,17 @@ void sensorLoop() {
 
 				#if SENSOR_TRIGGER_RELAY
 				{
-					if ((MAGNITUDE_TEMPERATURE == magnitude.type) && (current > -15)) {
-		                #if SENSOR_DEBUG
-							DEBUG_MSG_P(PSTR("[SENSOR_TRIGGER_RELAY] temp over -15, relay true\n"));
-						#endif // SENSOR_DEBUG
-						relayStatus(0, true);
-						if (getUptime() > 3600) {
-							DEBUG_MSG_P(PSTR("[SENSOR_TRIGGER_RELAY] uptime past 3600s, rebooting...\n"));
-							deferredReset(100, CUSTOM_RESET_NOFUSS);
+						if ((MAGNITUDE_TEMPERATURE == magnitude.type) && (current > _sensor_trigger_relay_max_temp)) {
+							#if SENSOR_DEBUG
+								DEBUG_MSG_P(PSTR("[SENSOR_TRIGGER_RELAY] temp over max, relay reset\n"));
+							#endif // SENSOR_DEBUG
+							relayStatus(0, SENSOR_TRIGGER_RELAY_MAX_RELAY);
+						} else if ((MAGNITUDE_TEMPERATURE == magnitude.type) && (current < _sensor_trigger_relay_min_temp)) {
+							#if SENSOR_DEBUG
+								DEBUG_MSG_P(PSTR("[SENSOR_TRIGGER_RELAY] temp under min, relay reset\n"));
+							#endif // SENSOR_DEBUG
+							relayStatus(0, SENSOR_TRIGGER_RELAY_MIN_RELAY);
 						}
-						if (current > 20) {
-							DEBUG_MSG_P(PSTR("[SENSOR_TRIGGER_RELAY] temp over +20, rebooting...\n"));
-							deferredReset(100, CUSTOM_RESET_NOFUSS);
-						}
-					} else if ((MAGNITUDE_TEMPERATURE == magnitude.type) && (current < -19)) {
-						#if SENSOR_DEBUG
-							DEBUG_MSG_P(PSTR("[SENSOR_TRIGGER_RELAY] temp under -19, relay false\n"));
-						#endif // SENSOR_DEBUG
-						relayStatus(0, false);
-					}
 				}
 				#endif // SENSOR_TRIGGER_RELAY
 
