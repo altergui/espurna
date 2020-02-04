@@ -166,6 +166,27 @@
     #define I2C_SDA_PIN         12  // D6
     #define I2C_SCL_PIN         14  // D5
 
+#elif defined(ALTERGUI_TELEGRAM_ALERT)
+
+    // Info
+    #define MANUFACTURER        "ALTERGUI"
+    #define DEVICE              "TELEGRAM_ALERT_1"
+
+    // Buttons
+    // No buttons on the D1 MINI alone, but defining it without adding a button doen't create problems
+    #define BUTTON1_PIN         0   // Connect a pushbutton between D3 and GND,
+                                    // it's the same as using a Wemos one button shield
+    #define BUTTON1_MODE        BUTTON_PUSHBUTTON | BUTTON_DEFAULT_HIGH
+    #define BUTTON1_RELAY       1
+
+    // LEDs
+    #define LED1_PIN            2
+    #define LED1_PIN_INVERSE    1
+
+    // DS18B20
+    #define DALLAS_SUPPORT      1
+    #define DALLAS_PIN          D6
+
 #elif defined(WEMOS_D1_BME280)
 
     // Info
