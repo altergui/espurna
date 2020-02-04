@@ -88,31 +88,31 @@
 
     #define        SENSOR_TRIGGER_RELAY    0 // don't trigger relay
 
-    #define			SENSOR_TRIGGER_MQTT		0 	// publish MQTT based on temperature
-	#define			SENSOR_TRIGGER_MQTT_SENSOR_ADDR	"28AA8371481401B2"   // second thermometer
-	#define	SENSOR_TRIGGER_MQTT_MAX_TEMP   33.6
-	#define	SENSOR_TRIGGER_MQTT_MAX_TOPIC  "sonoff-iogurte/relay/0/set"
-	#define	SENSOR_TRIGGER_MQTT_MAX_MSG	   RELAY_MQTT_OFF
-	#define	SENSOR_TRIGGER_MQTT_MIN_TEMP   33.5
-	#define	SENSOR_TRIGGER_MQTT_MIN_TOPIC  "sonoff-iogurte/relay/0/set"
-	#define	SENSOR_TRIGGER_MQTT_MIN_MSG    RELAY_MQTT_ON
+    #define	SENSOR_TRIGGER_MQTT            0      // publish MQTT based on temperature
+    #define SENSOR_TRIGGER_MQTT_SENSOR_ADDR "28AA8371481401B2"   // second thermometer
+    #define SENSOR_TRIGGER_MQTT_MAX_TEMP   33.6
+    #define SENSOR_TRIGGER_MQTT_MAX_TOPIC  "sonoff-iogurte/relay/0/set"
+    #define SENSOR_TRIGGER_MQTT_MAX_MSG    RELAY_MQTT_OFF
+    #define SENSOR_TRIGGER_MQTT_MIN_TEMP   33.5
+    #define SENSOR_TRIGGER_MQTT_MIN_TOPIC  "sonoff-iogurte/relay/0/set"
+    #define SENSOR_TRIGGER_MQTT_MIN_MSG    RELAY_MQTT_ON
 
-	#define	SENSOR_DEBUG 1
+    #define SENSOR_DEBUG 1
 
     // repurpose GPIO 1 for DS18B20 instead of serial TX
     #define DEBUG_SERIAL_SUPPORT    1
-	#define DALLAS_SUPPORT		1
-    #define DALLAS_PIN			5
+    #define DALLAS_SUPPORT      1
+    #define DALLAS_PIN          5
 
     // output 3.3v in D2 (gpio4)
-    #define LED3_PIN			4
+    #define LED3_PIN            4
     #define LED3_PIN_INVERSE    0
-	#define LED3_MODE			LED_MODE_ON
+    #define LED3_MODE           LED_MODE_ON
 
-	// BME280 on pins 3.3v,GND,D6,D5
-	#define BMX280_SUPPORT         0
-	#define I2C_SDA_PIN                     D6
-	#define I2C_SCL_PIN                     D5
+    // BME280 on pins 3.3v,GND,D6,D5
+    #define BMX280_SUPPORT         0
+    #define I2C_SDA_PIN                     D6
+    #define I2C_SCL_PIN                     D5
 
 #elif defined(NODEMCU_BASIC)
     // Info
@@ -186,7 +186,7 @@
     #define I2C_SDA_PIN         4  // D2
     #define I2C_SCL_PIN         5  // D1
 
-	#define BMX280_SUPPORT      1
+    #define BMX280_SUPPORT      1
 
 #elif defined(WEMOS_D1_TARPUNA_SHIELD)
 

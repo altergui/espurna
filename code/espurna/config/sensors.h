@@ -5,19 +5,19 @@
 #define SENSOR_DEBUG                        0               // Debug sensors
 
 #ifndef SENSOR_TRIGGER_RELAY
-#define	SENSOR_TRIGGER_RELAY				0				// Relay1 will be toggled depending on sensor1 reading
+#define SENSOR_TRIGGER_RELAY                0               // Relay1 will be toggled depending on sensor1 reading
 #endif
 
 #ifndef SENSOR_TRIGGER_RELAY_MIN_TEMP
-#define	SENSOR_TRIGGER_RELAY_MIN_TEMP		-273			// 0 Kelvin
+#define SENSOR_TRIGGER_RELAY_MIN_TEMP       -273            // 0 Kelvin
 #endif
 
 #ifndef SENSOR_TRIGGER_RELAY_MAX_TEMP
-#define	SENSOR_TRIGGER_RELAY_MAX_TEMP		1000			// 1000 celsius
+#define SENSOR_TRIGGER_RELAY_MAX_TEMP       1000            // 1000 celsius
 #endif
 
 #ifndef SENSOR_TRIGGER_MQTT
-#define	SENSOR_TRIGGER_MQTT                 0				// A hardcoded MQTT will be published depending on sensor1 reading
+#define SENSOR_TRIGGER_MQTT                 0               // A hardcoded MQTT will be published depending on sensor1 reading
 #endif
 
 #define SENSOR_READ_INTERVAL                6               // Read data from sensors every 6 seconds
