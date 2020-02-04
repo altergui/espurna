@@ -1488,16 +1488,16 @@ void sensorLoop() {
 				#if SENSOR_TRIGGER_MQTT
 				{
 				    if (strcmp(magnitude.sensor->address(magnitude.local).c_str(), SENSOR_TRIGGER_MQTT_SENSOR_ADDR) == 0) {
-						if ((MAGNITUDE_TEMPERATURE == magnitude.type) && (current > 33.9)) {
+						if ((MAGNITUDE_TEMPERATURE == magnitude.type) && (current >= SENSOR_TRIGGER_MQTT_MAX_TEMP)) {
 							#if SENSOR_DEBUG
-								DEBUG_MSG_P(PSTR("[SENSOR_TRIGGER_MQTT] temp over 33.9, mqtt set relay false\n"));
+								DEBUG_MSG_P(PSTR("[SENSOR_TRIGGER_MQTT] temp hit max threshold, mqtt set relay\n"));
 							#endif // SENSOR_DEBUG
-							mqttSendRaw(SENSOR_TRIGGER_MQTT_TOPIC, RELAY_MQTT_OFF);
-						} else if ((MAGNITUDE_TEMPERATURE == magnitude.type) && (current < 33.3)) {
+							mqttSendRaw(SENSOR_TRIGGER_MQTT_MAX_TOPIC, SENSOR_TRIGGER_MQTT_MAX_MSG);
+						} else if ((MAGNITUDE_TEMPERATURE == magnitude.type) && (current <= SENSOR_TRIGGER_MQTT_MIN_TEMP)) {
 							#if SENSOR_DEBUG
-								DEBUG_MSG_P(PSTR("[SENSOR_TRIGGER_MQTT] temp under 33.3, mqtt set relay true\n"));
+								DEBUG_MSG_P(PSTR("[SENSOR_TRIGGER_MQTT] temp hit min threshold, mqtt set relay\n"));
 							#endif // SENSOR_DEBUG
-							mqttSendRaw(SENSOR_TRIGGER_MQTT_TOPIC, RELAY_MQTT_ON);
+							mqttSendRaw(SENSOR_TRIGGER_MQTT_MAX_TOPIC, SENSOR_TRIGGER_MQTT_MIN_MSG);
 						}
 					}
 				}
