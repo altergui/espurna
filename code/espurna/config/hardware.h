@@ -114,6 +114,56 @@
     #define I2C_SDA_PIN                     D6
     #define I2C_SCL_PIN                     D5
 
+
+
+#elif defined(NODEMCU_LOLIN_BME280)
+
+    // Info
+    #define MANUFACTURER        "NODEMCU"
+    #define DEVICE              "LOLIN_BME280"
+
+    // Buttons
+    #define BUTTON1_PIN         0
+    #define BUTTON1_MODE        BUTTON_PUSHBUTTON | BUTTON_DEFAULT_HIGH
+    #define BUTTON1_RELAY       1
+
+    // Hidden button will enter AP mode if dblclick and reset the device when long-long-clicked
+    #define RELAY1_PIN          13
+    #define RELAY1_TYPE         RELAY_TYPE_NORMAL
+
+    // Light
+    #define LED1_PIN            2
+    #define LED1_PIN_INVERSE    1
+    #define LED1_MODE          LED_MODE_WIFI
+
+    #define LED2_PIN            16
+    #define LED2_PIN_INVERSE    1
+    #define LED2_MODE          LED_MODE_RELAY
+    #define LED2_RELAY         1
+
+    #define        SENSOR_TRIGGER_RELAY    0 // don't trigger relay
+
+    #define	SENSOR_TRIGGER_MQTT            0      // publish MQTT based on temperature
+    #define SENSOR_TRIGGER_MQTT_SENSOR_ADDR "28AA8371481401B2"   // second thermometer
+    #define SENSOR_TRIGGER_MQTT_MAX_TEMP   33.6
+    #define SENSOR_TRIGGER_MQTT_MAX_TOPIC  "sonoff-iogurte/relay/0/set"
+    #define SENSOR_TRIGGER_MQTT_MAX_MSG    RELAY_MQTT_OFF
+    #define SENSOR_TRIGGER_MQTT_MIN_TEMP   33.5
+    #define SENSOR_TRIGGER_MQTT_MIN_TOPIC  "sonoff-iogurte/relay/0/set"
+    #define SENSOR_TRIGGER_MQTT_MIN_MSG    RELAY_MQTT_ON
+
+    #define SENSOR_DEBUG 1
+
+    // output 3.3v in D2 (gpio4)
+    #define LED3_PIN            4
+    #define LED3_PIN_INVERSE    0
+    #define LED3_MODE           LED_MODE_ON
+
+    // BME280 on pins 3.3v,GND,D6,D5
+    #define BMX280_SUPPORT         1
+    #define I2C_SDA_PIN                     D6
+    #define I2C_SCL_PIN                     D5
+
 #elif defined(NODEMCU_BASIC)
     // Info
     // Generic NodeMCU Board without any buttons or relays connected.

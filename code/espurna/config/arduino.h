@@ -8,6 +8,7 @@
 //--------------------------------------------------------------------------------
 
 #define NODEMCU_LOLIN
+//#define NODEMCU_LOLIN_BME280
 //#define WEMOS_D1_MINI
 //#define WEMOS_D1_MINI_RELAYSHIELD
 //#define WEMOS_D1_BME280
