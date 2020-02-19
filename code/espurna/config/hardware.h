@@ -429,8 +429,8 @@
 #elif defined(TUYA_INCUBATOR)
 
     // Info
-    #define MANUFACTURER        "TUYA_INCUBATOR"
-    #define DEVICE              "DS18B20_TRIGRELAY_30ON_37OFF"
+    #define MANUFACTURER        "TUYA_FREEZER"
+    #define DEVICE              "DS18B20_TRIGRELAY_18OFF_15ON_DYN"
 
     // LEDs
     #define LED1_PIN            4
@@ -447,15 +447,15 @@
     #define RELAY1_TYPE         RELAY_TYPE_NORMAL
 
     // repurpose GPIO 5 for DS18B20
-	#define DALLAS_SUPPORT		1
-    #define DALLAS_PIN			5
+    #define DALLAS_SUPPORT      1
+    #define DALLAS_PIN          5
 
     // Relay1 will be toggled depending on Sensor1 reading
-    #define SENSOR_TRIGGER_RELAY 1
-    #define SENSOR_TRIGGER_RELAY_MIN_TEMP 30
-    #define SENSOR_TRIGGER_RELAY_MIN_RELAY true
-    #define SENSOR_TRIGGER_RELAY_MAX_TEMP 37
-    #define SENSOR_TRIGGER_RELAY_MAX_RELAY false
+    #define SENSOR_TRIGGER_RELAY           1
+    #define SENSOR_TRIGGER_RELAY_MIN_TEMP  -18
+    #define SENSOR_TRIGGER_RELAY_MIN_RELAY false
+    #define SENSOR_TRIGGER_RELAY_MAX_TEMP  -15
+    #define SENSOR_TRIGGER_RELAY_MAX_RELAY true
 
 // -----------------------------------------------------------------------------
 // Itead Studio boards
