@@ -79,7 +79,8 @@
 //#define ITEAD_SONOFF_LED
 //#define ITEAD_SONOFF_MINI
 //#define ITEAD_SONOFF_POW
-//#define ITEAD_SONOFF_POW_R2
+#define ITEAD_SONOFF_POW_R2
+#define RELAY_BOOT_MODE     RELAY_BOOT_SAME
 //#define ITEAD_SONOFF_RF
 //#define ITEAD_SONOFF_RFBRIDGE
 //#define ITEAD_SONOFF_S31
@@ -160,7 +161,10 @@
 // Features (values below are non-default values)
 //--------------------------------------------------------------------------------
 
-//#define ALEXA_SUPPORT          0
+#define WEB_FORCE_PASS_CHANGE  0
+#define TELNET_STA             1
+
+#define ALEXA_SUPPORT          0
 //#define API_SUPPORT            0
 //#define BROKER_SUPPORT         0
 //#define BUTTON_SUPPORT         0
@@ -168,11 +172,11 @@
 //#define DEBUG_TELNET_SUPPORT   0
 //#define DEBUG_UDP_SUPPORT      1
 //#define DEBUG_WEB_SUPPORT      0
-//#define DOMOTICZ_SUPPORT       0
+#define DOMOTICZ_SUPPORT       0
 //#define ENCODER_SUPPORT        1
-//#define HOMEASSISTANT_SUPPORT  0
+#define HOMEASSISTANT_SUPPORT  0
 //#define I2C_SUPPORT            1
-//#define INFLUXDB_SUPPORT       1
+#define INFLUXDB_SUPPORT       1
 //#define IR_SUPPORT             1
 //#define LED_SUPPORT            0
 //#define LLMNR_SUPPORT          1  // Only with latest Arduino Core
@@ -191,7 +195,7 @@
 //#define SSDP_SUPPORT           1
 //#define TELNET_SUPPORT         0
 //#define TERMINAL_SUPPORT       0
-//#define THINGSPEAK_SUPPORT     0
+#define THINGSPEAK_SUPPORT     0
 //#define TUYA_SUPPORT           0
 //#define UART_MQTT_SUPPORT      1
 //#define WEB_SUPPORT            0
