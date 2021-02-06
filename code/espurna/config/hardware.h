@@ -650,7 +650,7 @@
 
     // Info
     #define MANUFACTURER        "ITEAD"
-    #define DEVICE              "SONOFF_POW_R2_GUI"
+    #define DEVICE              "SONOFF_POW_R2"
 
     // Buttons
     #define BUTTON1_PIN         0
@@ -673,9 +673,6 @@
     #define CSE7766_SUPPORT     1
     #endif
     #define CSE7766_PIN         1
-
-	#define DALLAS_SUPPORT		1
-	#define DALLAS_PIN			4
 
 #elif defined(ITEAD_SONOFF_DUAL)
 
